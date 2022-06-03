@@ -1,0 +1,167 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    font-family: "Open Sans";
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.5em;
+    text-align: center;
+    margin: 0;
+    background-image: url('background3.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position-y: 80px;
+    background-position-x: center;
+}
+
+h1 {
+    color: #666666;
+    font-size: 2rem;
+    line-height: 1.5em;
+    margin: 2em 0 2em 0;
+}
+
+.form {
+    margin: 10% auto;
+    align-self: center;
+    background-color: rgba(7, 128, 128, 0.6);
+    max-width: 40%;
+    padding: 2rem;
+}
+
+.form-data {
+    margin: auto;
+    width: 80%;
+}
+
+input {
+    font-size: 1.1em;
+    height: 1.8em;
+    margin-bottom: 0.7em;
+}
+
+.btn {
+    position: relative;
+    border: none;
+    color: white;
+    overflow: hidden;
+    margin: 1rem;
+    padding: 0;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 0.7em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 200px;
+    height: 60px;
+    background-color: #F45D48;
+}
+
+.container {
+    align-content: center;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 46rem;
+}
+
+.link {
+    width: 60%;
+    margin: auto;
+    text-decoration: none;
+}
+
+.link:hover:before {
+    width: 250px;
+}
+.link:hover .text:before {
+    content:"Sign up!";
+}
+
+.link:hover span {
+    display: none;
+}
+
+.menu {
+    background-color: #078080;
+    margin-top: 0;
+    height: 40%;
+}
+
+.menu > .btn {
+    margin: 20px 60px 20px 60px;
+}
+
+.tabs {
+    max-width: 500px;
+    width: 100%;
+    margin: 60px auto;
+    position: relative;
+    background-color: #07808080;
+}
+
+fieldset {
+    border: none;
+}
+
+.fields {
+    background: #F9F9F9;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8em;
+    width: 400px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 3px solid #078080;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#usernames
+{
+    height: 3em;
+}
+
+h3 {
+    margin: 0;
+    padding: 1em 0 0.5em 0;
+}
+
+
+.fields:hover {
+    -webkit-transition: background 0.3s ease-in;
+    -moz-transition: background 0.3s ease-in;
+    transition: background 0.3s ease-in;
+    background:cornsilk;
+}
+
+textarea {
+    height: 200px;
+    max-width: 100%;
+    resize: none;
+}
+
+fieldset>.btn:hover {
+    background: #07808080;
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+input:focus,
+textarea:focus {
+    outline: 0;
+    border: 1px solid #aaa;
+}
+
+button:hover {
+    cursor : pointer;
+}

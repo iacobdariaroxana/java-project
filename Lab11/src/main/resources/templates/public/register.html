@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <title>My network</title>
+</head>
+<body>
+<div>
+    <div class="form">
+        <form id="login">
+            <label for="username">Username</label><br>
+            <input type="text" name="username" id="username"><br>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password"><br>
+            <label for="confirmPassword">Confirm Password</label><br>
+            <input type="password" name="confirmPassword" id="confirmPassword"><br>
+        </form>
+        <button type="button" class="btn" data-color="#f34711" id="loginButton" onclick="register();">Create Account</button><br>
+        <label hidden id="credentialsNotValid">Username must have at least 7 alphanumeric characters. Password must have at least 8 chars, with one special char, one upper char and one numeric char.</label>
+    </div>
+</div>
+
+
+</body>
+</html>
