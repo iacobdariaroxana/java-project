@@ -58,7 +58,6 @@ public class UserService {
 
     private String getEncodedPassword(String password){
         String encodedPassword= BCrypt.withDefaults().hashToString(12, password.toCharArray());
-//        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), bcryptHashString);
         return encodedPassword;
     }
 }

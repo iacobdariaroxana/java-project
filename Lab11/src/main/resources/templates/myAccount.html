@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/styles.css">
     <link rel="stylesheet" href="public/table.css">
-    <script src="public/script.js"></script>
-    <script src="public/sendMessage.js"></script>
-    <title>Dashboard</title>
+    <title>My account</title>
 </head>
 <body>
 <header class="menu">
@@ -25,7 +23,7 @@
     <button class="btn" onclick="setTab('friends');">
         Friends
     </button>
-    <button class="btn" onclick="">
+    <button class="btn" onclick="logout()">
         Logout
     </button>
 </header>
@@ -36,53 +34,39 @@
             <select name="messageType" class="fields" id="messageType" required autofocus>
                 <option value="">-- Choose message type --</option>
                 <option value="1">To a friend</option>
-                <option value="2">To all friends</option>
-                <option value="3">To a group of users</option>
+                <!--                <option value="2">To all friends</option>-->
+                <option value="2">To a group of users</option>
             </select>
         </fieldset>
         <fieldset>
-            <input class="fields" id="usernames" placeholder="Username(s) - comma separated" type="text">
+            <input class="fields" id="usernames" placeholder="Username(s) - comma separated" type="text" required/>
         </fieldset>
         <fieldset>
             <textarea class="fields" id="messageText" placeholder="Type your message here...." required></textarea>
         </fieldset>
         <fieldset>
-            <button class="btn" name="submit" type="submit" id="sendMessage" data-submit="...Sending" onclick="sendMessage()">Send</button>
+            <button onclick="send()" class="btn" type="button" id="sendMessage">Send</button>
         </fieldset>
     </form>
+    <label hidden id="send-response"></label>
 </div>
 <div class="tabs" hidden id="inbox">
     <div class="inboxMessages">
         <div>
             <label for="searchTag">Search</label>
-            <input type="text" name="searchTag" class="searchTag"></input>
+            <input type="text" id="searchTag" onchange="search('inbox');"></input>
         </div>
 
-        <table cellspacing="0">
-            <tr class="tableHeader">
+        <table id="inboxTable" cellspacing="0">
+            <thead class="tableHeader">
+            <tr>
                 <th width="200">From</th>
                 <th>Message</th>
             </tr>
+            </thead>
+            <tbody>
 
-            <tr>
-                <td>Jane Doe</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </td>
-            </tr>
-
-            <tr>
-                <td>John Doe</td>
-                <td>Blanditiis, aliquid numquam iure voluptatibus ut maiores explicabo ducimus neque, nesciunt rerum perferendis, inventore.</td>
-            </tr>
-
-            <tr>
-                <td>Jane Smith</td>
-                <td> Culpa praesentium unde pariatur fugit eos recusandae voluptas.</td>
-            </tr>
-
-            <tr>
-                <td>John Smith</td>
-                <td>Aut voluptatum accusantium, eveniet, sapiente quaerat adipisci consequatur maxime temporibus quas, dolorem impedit.</td>
-            </tr>
+            </tbody>
         </table>
     </div>
 </div>
@@ -90,66 +74,62 @@
     <div class="sentMessages">
         <div>
             <label for="searchTagSent">Search</label>
-            <input type="text" name="searchTagSent" class="searchTagSent"></input>
+            <input type="text" id="searchTagSent" onchange="search('sent');"></input>
         </div>
 
-        <table cellspacing="0">
-            <tr class="tableHeader">
+        <table id="outboxTable" cellspacing="0">
+            <thead class="tableHeader">
+            <tr>
                 <th width="200">To</th>
                 <th>Message</th>
             </tr>
+            </thead>
+            <tbody>
 
-            <tr>
-                <td>RoxanaIacob</td>
-                <td>Treaba merge. </td>
-            </tr>
-
-            <tr>
-                <td>AndreiTocila</td>
-                <td>Culpa praesentium unde pariatur fugit eos recusandae voluptas.</td>
-            </tr>
-
-            <tr>
-                <td>CristiButescu</td>
-                <td>Blanditiis, aliquid numquam iure voluptatibus ut maiores explicabo ducimus neque, nesciunt rerum perferendis, inventore.</td>
-            </tr>
-
-            <tr>
-                <td>CristianFrasinaru</td>
-                <td>Java rules!</td>
-            </tr>
+            </tbody>
         </table>
     </div>
 </div>
 <div class="tabs friends" hidden id="friends">
     <div>
+        <button class="btn friends" onclick="showFriendsOption('myFriends');">
+            My friends
+        </button>
         <button class="btn friends" onclick="showFriendsOption('popularUsers');">
             Find most popular
         </button>
         <button class="btn friends" onclick="showFriendsOption('addFriend');">
             Add friend
         </button>
-        <button class="btn friends"
-                onclick="showFriendsOption('networkOverview');">
-            Network overview
-        </button>
+<!--        <button class="btn friends"-->
+<!--                onclick="showFriendsOption('networkOverview');">-->
+<!--            Network overview-->
+<!--        </button>-->
+    </div>
+    <div hidden class="friendsOptions" id="myFriends">
+        <ol class="list" id="myFriendsList">
+        </ol>
     </div>
     <div hidden class="friendsOptions" id="popularUsers">
-        <ol class="list">
-            <li class="item"><h2 class="headline"><span>CristianFrasinaru</span></h2></li>
-            <li class="item"><h2 class="headline">RoxanaIacob</h2></li>
-            <li class="item"><h2 class="headline">CristiButescu</h2></li>
-            <li class="item"><h2 class="headline">AndreiTocila</h2></li>
+        <ol class="list" id="vip">
         </ol>
     </div>
     <div hidden class="friendsOptions" id="addFriend">
         <label for="addFriend">Add friend</label>
-        <input type="text" name="addFriend"></input>
-        <button class="btn" name="submit" type="submit">Add</button>
+        <input type="text" name="addFriend" id="friendName" required></input>
+        <button class="btn" name="submit" type="button" onclick="addFriend()">Add</button>
+        <label id="response-insert-friend"></label>
     </div>
     <div hidden class="friendsOptions" id="networkOverview">
-        <img src="/public/network.jpg" alt="network overview"/>
+        <img alt="network overview" th:src="@{images/network.jpg}"/>
     </div>
 </div>
+<script src="public/script.js"></script>
+<script src="public/send.js"></script>
+<script src="public/friends.js"></script>
+<script src="public/logout.js"></script>
+<script src="public/inbox.js"></script>
+<script src="public/outbox.js"></script>
+<script src="public/search.js"></script>
 </body>
 </html>

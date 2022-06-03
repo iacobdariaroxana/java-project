@@ -12,10 +12,10 @@ body {
     line-height: 1.5em;
     text-align: center;
     margin: 0;
-    background-image: url('background3.png');
+    background-image: url('../background3.png');
     background-size: 80%;
     background-repeat: no-repeat;
-    background-position-y: 80px;
+    background-position-y: 5em;
     background-position-x: center;
 }
 
@@ -58,8 +58,8 @@ input {
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
-    width: 200px;
-    height: 60px;
+    width: 12em;
+    height: 3em;
     background-color: #F45D48;
 }
 
@@ -81,7 +81,7 @@ input {
 }
 
 .link:hover:before {
-    width: 250px;
+    width: 15em;
 }
 .link:hover .text:before {
     content:"Sign up!";
@@ -98,13 +98,13 @@ input {
 }
 
 .menu > .btn {
-    margin: 20px 60px 20px 60px;
+    margin: 1em 2em 1em 2em;
 }
 
 .tabs {
-    max-width: 500px;
+    max-width: 23em;
     width: 100%;
-    margin: 60px auto;
+    margin: 2em auto;
     position: relative;
     background-color: #07808080;
 }
@@ -117,11 +117,11 @@ fieldset {
     background: #F9F9F9;
     font-family: "Open Sans", sans-serif;
     font-size: 0.8em;
-    width: 400px;
-    padding: 15px;
-    margin: 15px 0;
-    border: 3px solid #078080;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    width: 22em;
+    padding: 0.7em;
+    margin: 0.5em 0;
+    border: 0.2em solid #078080;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2), 0 0.5em 0.5em 0 rgba(0, 0, 0, 0.24);
 }
 
 #usernames
@@ -143,7 +143,7 @@ h3 {
 }
 
 textarea {
-    height: 200px;
+    height: 10em;
     max-width: 100%;
     resize: none;
 }
@@ -161,7 +161,6 @@ textarea:focus {
     outline: 0;
     border: 1px solid #aaa;
 }
-
 button:hover {
     cursor : pointer;
 }

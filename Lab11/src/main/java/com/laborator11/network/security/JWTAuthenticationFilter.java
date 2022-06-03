@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import repositories.UserRepository;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.Cookie;
@@ -56,8 +57,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException {
+        UserRepository userRepository = new UserRepository("User");
+        int id = userRepository.findByUsername(((MyUserPrincipal) auth.getPrincipal()).getUsername()).get(0).getId();
+
         String token = JWT.create()
                 .withSubject(((MyUserPrincipal) auth.getPrincipal()).getUsername())
+                .withClaim("id", id)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(SECRET.getBytes()));
 
@@ -66,6 +71,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         cookie.setMaxAge(2147483647);
         cookie.setSecure(true);
         res.addCookie(cookie);
+
         res.getWriter().write(token);
         res.getWriter().flush();
     }

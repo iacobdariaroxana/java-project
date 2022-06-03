@@ -7,7 +7,8 @@ import java.io.Serializable;
 @Table(name = "MESSAGES")
 @NamedQueries({
         @NamedQuery(name = "Message.findAll", query = "select m from Message m"),
-        @NamedQuery(name = "Message.findByHashtag", query = "select m from Message m where m.message like CONCAT('%', CONCAT(?1, '%'))"),
+        @NamedQuery(name = "Message.findByHashtag",
+                query = "select m from Message m where m.message like CONCAT('%', CONCAT(?1, '%')) and (m.fromId = ?2 or m.toId = ?2)"),
         @NamedQuery(name = "Message.findByFromId", query = "select m from Message m where m.fromId = ?1"),
         @NamedQuery(name = "Message.findByToId", query = "select m from Message m where m.toId = ?1"),
         @NamedQuery(name = "Message.findByType", query = "select m from Message m where m.type = ?1"),
@@ -70,6 +71,10 @@ public class Message extends AbstractEntity implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     @Override

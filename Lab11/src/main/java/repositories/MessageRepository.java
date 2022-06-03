@@ -10,13 +10,14 @@ public class MessageRepository extends AbstractRepository<Message, Integer>{
         super(name);
     }
 
-    public List<Message> findByHashtag(String hashtag)
+    public List<Message> findByHashtag(String hashtag, int id)
     {
         String query = this.getClassName() + ".findByHashtag";
         List<Message> messages = null;
         try{
             messages = em.createNamedQuery(query)
                     .setParameter(1, hashtag)
+                    .setParameter(2, id)
                     .getResultList();
             return messages;
         }
